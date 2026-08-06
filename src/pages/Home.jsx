@@ -1,19 +1,17 @@
 import Navbar from "../components/common/Navbar";
 import Hero from "../components/home/Hero";
 import Stats from "../components/home/Stats";
-//import WhyChooseUs from "../components/home/WhyChooseUs";
+import WhyChooseUs from "../components/home/WhyChooseUs";
 import Footer from "../components/common/Footer";
 
-function Home() {
+export default function Home() {
   return (
     <>
       <Navbar />
       <Hero />
       <Stats />
-     
+      <WhyChooseUs />
       <Footer />
     </>
   );
 }
-
-export default Home;
