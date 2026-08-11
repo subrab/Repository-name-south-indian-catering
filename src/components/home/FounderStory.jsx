@@ -1,3 +1,5 @@
+import founderImage from "../../assets/images/founder-madaswamy.jpg";
+
 export default function FounderStory() {
   return (
     <section className="py-24 bg-white">
@@ -17,12 +19,14 @@ export default function FounderStory() {
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
 
-          {/* Founder Image Placeholder */}
+          {/* Founder Image */}
           <div className="flex justify-center">
 
-            <div className="w-80 h-96 rounded-3xl bg-[#F3E7D3] flex items-center justify-center text-2xl text-[#7A1F1F] shadow-xl">
-              Founder Photo
-            </div>
+            <img
+              src={founderImage}
+              alt="Madaswamy, founder of Annam Global"
+              className="w-80 h-96 rounded-3xl object-cover shadow-xl"
+            />
 
           </div>
 
