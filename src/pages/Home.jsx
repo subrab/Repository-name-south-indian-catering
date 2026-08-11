@@ -4,15 +4,25 @@ import Stats from "../components/home/Stats";
 import WhyChooseUs from "../components/home/WhyChooseUs";
 import Footer from "../components/common/Footer";
 import FounderStory from "../components/home/FounderStory";
+import Services from "../components/home/Services";
+import Menu from "../components/home/Menu";
+import Gallery from "../components/home/Gallery";
+import Countries from "../components/home/Countries";
+
+
 export default function Home() {
   return (
-    <>
-  <Navbar />
-  <Hero />
-  <Stats />
-  <WhyChooseUs />
-  <FounderStory />
-  <Footer />
+   <>
+ <Navbar />
+<Hero />
+<Stats />
+<WhyChooseUs />
+<FounderStory />
+<Services />
+<Menu />
+<Gallery />
+<Countries />
+<Footer />
 </>
   );
 }
