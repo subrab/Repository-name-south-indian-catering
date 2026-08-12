@@ -1,13 +1,13 @@
 export default function ServiceCard({
-  icon,
+  icon: Icon,
   title,
   description,
 }) {
   return (
     <div className="bg-white rounded-3xl shadow-lg p-8 hover:-translate-y-3 hover:shadow-2xl transition-all duration-300">
 
-      <div className="text-6xl">
-        {icon}
+      <div className="w-16 h-16 rounded-2xl bg-[#FFF3DC] flex items-center justify-center">
+        <Icon className="w-8 h-8 text-[#7A1F1F]" strokeWidth={1.75} />
       </div>
 
       <h3 className="text-2xl font-bold text-[#7A1F1F] mt-6">
