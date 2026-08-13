@@ -6,6 +6,7 @@ import InternationalCatering from "./pages/services/InternationalCatering";
 import PrivateCelebrations from "./pages/services/PrivateCelebrations";
 import TempleFunctions from "./pages/services/TempleFunctions";
 import LiveFoodCounters from "./pages/services/LiveFoodCounters";
+import MenuDetail from "./pages/menu/MenuDetail";
 import ScrollToTop from "./components/common/ScrollToTop";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/services/private-celebrations" element={<PrivateCelebrations />} />
         <Route path="/services/temple-functions" element={<TempleFunctions />} />
         <Route path="/services/live-food-counters" element={<LiveFoodCounters />} />
+        <Route path="/menu/:slug" element={<MenuDetail />} />
       </Routes>
     </>
   );

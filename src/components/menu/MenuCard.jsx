@@ -1,4 +1,6 @@
-export default function MenuCard({ title, dishes, image }) {
+import { Link } from "react-router-dom";
+
+export default function MenuCard({ title, dishes, image, slug }) {
   return (
     <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
 
@@ -18,9 +20,18 @@ export default function MenuCard({ title, dishes, image }) {
           {dishes}
         </p>
 
-        <button className="mt-6 bg-[#7A1F1F] text-white px-6 py-3 rounded-full hover:bg-[#5B1717] transition">
-          Explore Menu
-        </button>
+        {slug ? (
+          <Link
+            to={`/menu/${slug}`}
+            className="mt-6 inline-block bg-[#7A1F1F] text-white px-6 py-3 rounded-full hover:bg-[#5B1717] transition"
+          >
+            Explore Menu
+          </Link>
+        ) : (
+          <button className="mt-6 bg-[#7A1F1F] text-white px-6 py-3 rounded-full hover:bg-[#5B1717] transition">
+            Explore Menu
+          </button>
+        )}
 
       </div>
 

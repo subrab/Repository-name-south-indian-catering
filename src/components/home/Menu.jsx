@@ -32,6 +32,7 @@ export default function Menu() {
               title={item.title}
               dishes={item.dishes}
               image={item.image}
+              slug={item.slug}
             />
           ))}
 
