@@ -4,6 +4,7 @@ const services = [
   {
     id: 1,
     title: "Wedding Catering",
+    slug: "wedding-catering",
     icon: Heart,
     description:
       "Traditional South Indian wedding feasts crafted with authentic recipes and premium hospitality."
@@ -11,6 +12,7 @@ const services = [
   {
     id: 2,
     title: "Corporate Catering",
+    slug: "corporate-catering",
     icon: Building2,
     description:
       "Professional catering solutions for meetings, conferences and corporate celebrations."
@@ -18,6 +20,7 @@ const services = [
   {
     id: 3,
     title: "International Catering",
+    slug: "international-catering",
     icon: Globe2,
     description:
       "Authentic Indian cuisine delivered across multiple countries with consistent quality."
@@ -25,6 +28,7 @@ const services = [
   {
     id: 4,
     title: "Private Celebrations",
+    slug: "private-celebrations",
     icon: PartyPopper,
     description:
       "Birthdays, anniversaries, baby showers and family gatherings made memorable."
@@ -32,6 +36,7 @@ const services = [
   {
     id: 5,
     title: "Temple Functions",
+    slug: "temple-functions",
     icon: Landmark,
     description:
       "Traditional prasadam, festivals and religious functions prepared with devotion."
@@ -39,6 +44,7 @@ const services = [
   {
     id: 6,
     title: "Live Food Counters",
+    slug: "live-food-counters",
     icon: ChefHat,
     description:
       "Interactive live dosa, chaat, BBQ and dessert counters for every celebration."
