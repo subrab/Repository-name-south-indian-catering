@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import founderImage from "../../assets/images/founder-madaswamy.jpg";
 
 export default function FounderStory() {
@@ -54,9 +55,12 @@ export default function FounderStory() {
               quality and tradition.
             </p>
 
-            <button className="mt-8 bg-[#7A1F1F] text-white px-8 py-4 rounded-full hover:bg-[#5C1717] transition">
+            <Link
+              to="/about"
+              className="mt-8 inline-block bg-[#7A1F1F] text-white px-8 py-4 rounded-full hover:bg-[#5C1717] transition"
+            >
               Read Our Story
-            </button>
+            </Link>
 
           </div>
 

@@ -35,6 +35,7 @@ export default function Services() {
               icon={service.icon}
               title={service.title}
               description={service.description}
+              slug={service.slug}
             />
           ))}
 
