@@ -3,7 +3,7 @@ import MenuCard from "../menu/MenuCard";
 
 export default function Menu() {
   return (
-    <section className="py-24 bg-white">
+    <section id="menu" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-8">
 
         <div className="text-center">

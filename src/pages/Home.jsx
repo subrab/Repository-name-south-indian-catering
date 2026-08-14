@@ -20,7 +20,9 @@ export default function Home() {
 <FounderStory />
 <Services />
 <Menu />
-<Gallery />
+<div id="gallery">
+  <Gallery />
+</div>
 <Countries />
 <Footer />
 </>

@@ -2,7 +2,7 @@ import founderImage from "../../assets/images/founder-madaswamy.jpg";
 
 export default function FounderStory() {
   return (
-    <section className="py-24 bg-white">
+    <section id="about" className="py-24 bg-white">
       <div className="max-w-6xl mx-auto px-8">
 
         <div className="text-center mb-16">

@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import heroImage from "../../assets/images/hero-main.jpg";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[78vh] overflow-hidden">
+    <section id="home" className="relative min-h-[78vh] overflow-hidden">
 
       {/* Hero Image */}
       <img
@@ -53,14 +54,15 @@ export default function Hero() {
             {/* Buttons */}
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
 
-              <button
+              <Link
+                to="/request-quote"
                 className="bg-[#7A1F1F] hover:bg-[#5B1717] text-white
                 px-8 py-4 rounded-full font-semibold
                 shadow-lg hover:shadow-xl
-                transition-all duration-300"
+                transition-all duration-300 text-center"
               >
                 Request a Quote
-              </button>
+              </Link>
 
               <button
                 className="border-2 border-white/80

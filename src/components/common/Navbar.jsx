@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Navbar() {
   return (
     <header className="bg-red-500 text-white p-6">
@@ -12,24 +14,26 @@ function Navbar() {
     alignItems: "center",
   }}
 >
-  <a href="#">Home</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Menu</a>
-  <a href="#">Gallery</a>
-  <a href="#">Contact</a>
+  <Link to="/#home">Home</Link>
+  <Link to="/#about">About</Link>
+  <Link to="/#services">Services</Link>
+  <Link to="/#menu">Menu</Link>
+  <Link to="/#gallery">Gallery</Link>
+  <Link to="/#contact">Contact</Link>
 
-  <button
+  <Link
+    to="/request-quote"
     style={{
       background: "#7A1F1F",
       color: "white",
       padding: "12px 24px",
       borderRadius: "999px",
       border: "none",
+      textDecoration: "none",
     }}
   >
     Get a Quote
-  </button>
+  </Link>
 </nav>
       </div>
     </header>

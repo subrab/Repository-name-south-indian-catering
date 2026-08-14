@@ -3,7 +3,7 @@ import ServiceCard from "../services/ServiceCard";
 
 export default function Services() {
   return (
-    <section className="py-24 bg-[#FFF8F0]">
+    <section id="services" className="py-24 bg-[#FFF8F0]">
       <div className="max-w-7xl mx-auto px-8">
 
         {/* Heading */}
