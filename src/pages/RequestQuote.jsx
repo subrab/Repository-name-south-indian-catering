@@ -1,17 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { CheckCircle2, MessageCircle, Mail } from "lucide-react";
+import { CheckCircle2, Loader2 } from "lucide-react";
 import Navbar from "../components/common/Navbar";
 import Footer from "../components/common/Footer";
 import services from "../data/services";
 
-// TODO: Replace this with your real WhatsApp Business number,
-// including country code, no + or spaces (e.g. "919876543210").
-const WHATSAPP_NUMBER = "+917010120871";
-
-// TODO: Replace this with the email address quote requests should go to.
-const QUOTE_EMAIL = "subramaniabharathi5@gmail.com";
-const WEB3FORMS_ACCESS_KEY = "8c5e91cd-275f-4b89-9816-c8d89d2d8e5a"; 
+// TODO: Replace this with your own free Web3Forms access key.
+// Get one instantly (no account setup) at https://web3forms.com
+// by entering the email address you want quote requests sent to.
+const WEB3FORMS_ACCESS_KEY = "8c5e91cd-275f-4b89-9816-c8d89d2d8e5a";
 
 const initialForm = {
   name: "",
@@ -25,52 +22,45 @@ const initialForm = {
 
 export default function RequestQuote() {
   const [form, setForm] = useState(initialForm);
-  const [submitted, setSubmitted] = useState(false);
-  const [method, setMethod] = useState(null);
+  const [status, setStatus] = useState("idle"); // idle | submitting | success | error
 
   function handleChange(e) {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
-  function buildMessageLines() {
-    return [
-      "New Quote Request — Annam Global",
-      "",
-      `Name: ${form.name}`,
-      `Email: ${form.email}`,
-      `Phone: ${form.phone}`,
-      `Event Type: ${form.eventType}`,
-      form.eventDate ? `Event Date: ${form.eventDate}` : null,
-      form.guestCount ? `Guest Count: ${form.guestCount}` : null,
-      form.message ? `Message: ${form.message}` : null
-    ].filter(Boolean);
-  }
-
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    setStatus("submitting");
 
-    // e.nativeEvent.submitter tells us which button was actually
-    // clicked to trigger this submit — "whatsapp" or "email".
-    const usedMethod = e.nativeEvent.submitter?.value;
-    setMethod(usedMethod);
-    const lines = buildMessageLines();
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Quote Request — ${form.eventType || "Catering Enquiry"}`,
+          from_name: "Annam Global Website",
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          event_type: form.eventType,
+          event_date: form.eventDate,
+          guest_count: form.guestCount,
+          message: form.message
+        })
+      });
 
-    if (usedMethod === "email") {
-      const subject = encodeURIComponent(
-        `Quote Request — ${form.eventType || "Catering Enquiry"}`
-      );
-      const body = encodeURIComponent(lines.join("\n"));
-      window.location.href = `mailto:${QUOTE_EMAIL}?subject=${subject}&body=${body}`;
-    } else {
-      const whatsappMessage = encodeURIComponent(lines.join("\n"));
-      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`;
-      // Opens WhatsApp (app or web) in a new tab with the message
-      // pre-filled — the visitor just needs to hit send.
-      window.open(whatsappUrl, "_blank");
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
     }
-
-    setSubmitted(true);
   }
 
   return (
@@ -95,20 +85,19 @@ export default function RequestQuote() {
       <section className="py-20 bg-[#FFF8F0]">
         <div className="max-w-2xl mx-auto px-8">
 
-          {submitted ? (
+          {status === "success" ? (
 
             <div className="bg-white rounded-3xl shadow-lg p-12 text-center">
 
               <CheckCircle2 className="w-16 h-16 text-[#7A1F1F] mx-auto" strokeWidth={1.5} />
 
               <h2 className="text-3xl font-bold text-[#7A1F1F] mt-6">
-                Almost There!
+                Thank You!
               </h2>
 
               <p className="mt-4 text-gray-600 leading-7">
-                {method === "email"
-                  ? "We've opened your email app with your details filled in — just hit send there to complete your request."
-                  : "We've opened WhatsApp with your details filled in — just hit send there to complete your request. If it didn't open, check your pop-up blocker."}
+                We've received your request and will get back to you
+                shortly with a tailored quote.
               </p>
 
               <Link
@@ -126,6 +115,13 @@ export default function RequestQuote() {
               onSubmit={handleSubmit}
               className="bg-white rounded-3xl shadow-lg p-8 md:p-12 space-y-6"
             >
+
+              {status === "error" && (
+                <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 text-sm">
+                  Something went wrong sending your request. Please try
+                  again, or contact us directly.
+                </div>
+              )}
 
               <div>
                 <label className="block text-sm font-semibold text-[#7A1F1F] mb-2">
@@ -245,29 +241,20 @@ export default function RequestQuote() {
                 />
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-4">
-
-                <button
-                  type="submit"
-                  name="method"
-                  value="whatsapp"
-                  className="flex items-center justify-center gap-2 bg-[#25D366] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#1fb855] transition"
-                >
-                  <MessageCircle className="w-5 h-5" />
-                  Send via WhatsApp
-                </button>
-
-                <button
-                  type="submit"
-                  name="method"
-                  value="email"
-                  className="flex items-center justify-center gap-2 bg-[#7A1F1F] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#5B1717] transition"
-                >
-                  <Mail className="w-5 h-5" />
-                  Send via Email
-                </button>
-
-              </div>
+              <button
+                type="submit"
+                disabled={status === "submitting"}
+                className="w-full flex items-center justify-center gap-2 bg-[#7A1F1F] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#5B1717] transition disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {status === "submitting" ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  "Submit Request"
+                )}
+              </button>
 
             </form>
 
