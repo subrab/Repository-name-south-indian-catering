@@ -109,7 +109,7 @@ export default function PrivateCelebrations() {
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              to="/"
+              to="/request-quote"
               className="bg-[#D4AF37] text-[#7A1F1F] px-8 py-4 rounded-full font-semibold hover:bg-[#c19d2e] transition"
             >
               Request a Quote
